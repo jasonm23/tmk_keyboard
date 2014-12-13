@@ -18,13 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONFIG_H
 #define CONFIG_H
 
-
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x0ADB
+#define VENDOR_ID       0xC0D0
+#define PRODUCT_ID      0xC0D0
 #define DEVICE_VER      0x0101
-#define MANUFACTURER    t.m.k.
-#define PRODUCT         ADB keyboard converter
-#define DESCRIPTION     convert ADB keyboard to USB
+#define MANUFACTURER    ocodo
+#define PRODUCT         Apple Extended Keyboard II
+#define DESCRIPTION     Apple Extended Keyboard II ADB to USB
 
 /* matrix size */
 #define MATRIX_ROWS 16  // keycode bit: 3-0
@@ -33,16 +32,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROW(code)    ((code)>>3&0x0F)
 #define MATRIX_COL(code)    ((code)&0x07)
 
-
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
 
-
 /* legacy keymap support */
 #define USE_LEGACY_KEYMAP
-
 
 /* ADB port setting */
 #define ADB_PORT        PORTD

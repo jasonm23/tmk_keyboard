@@ -6,7 +6,6 @@ But binary size is about 10KB or more it doesn't fit into 8K flash like ATMega8U
 
 Discuss: http://geekhack.org/showwiki.php?title=Island:14290
 
-
 Wiring
 ------
 0. Connect ADB keyboard to Teensy by 3 lines(Vcc, GND, Data). By default Data line uses port PD0.
@@ -47,6 +46,16 @@ If you want to define some keymaps than just one, see hhkb/keymap.c and
 macway/keymap.c as examples. Keymap(layer) switching may needs a bit of
 effort at this time.
 
+No Caps
+----
+
+This branch `adb-aekii-no-caps` contains no Caps Lock mapping, the
+Caps Lock key is mapped to Left Control.  This is specifically for
+Emacs and Vim use. (ANSI layout patched only.)
+
+I'd suggest patching the Caps Lock mapping yourself, if you would like
+an alternative mapping, patch the appropriate keymap.
+
     /* Default Layer: plain keymap
      * ,---.   ,---------------. ,---------------. ,---------------. ,-----------.             ,---.
      * |Esc|   |F1 |F2 |F3 |F4 | |F5 |F6 |F7 |F8 | |F9 |F10|F11|F12| |PrS|ScL|Pau|             |Pwr|
@@ -56,7 +65,7 @@ effort at this time.
      * |-----------------------------------------------------------| |-----------| |---------------|
      * |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P|  [|  ]|    \| |Del|End|PgD| |  7|  8|  9|  -|
      * |-----------------------------------------------------------| `-----------' |---------------|
-     * |CapsLo|  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|Return  |               |  4|  5|  6|  +|
+     * |Ctrl  |  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|Return  |               |  4|  5|  6|  +|
      * |-----------------------------------------------------------|     ,---.     |---------------|
      * |Shift   |  Z|  X|  C|  V|  B|  N|  M|  ,|  ,|  /|Shift     |     |Up |     |  1|  2|  3|   |
      * |-----------------------------------------------------------| ,-----------. |-----------|Ent|
@@ -64,12 +73,12 @@ effort at this time.
      * `-----------------------------------------------------------' `-----------' `---------------'
      */
     KEYMAP(
-    ESC, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12,           PSCR,SLCK,BRK,                    PWR,
-    GRV, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC,     INS, HOME,PGUP,    NLCK,EQL, PSLS,PAST,
-    TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,     DEL, END, PGDN,    P7,  P8,  P9,  PMNS,
-    LCAP,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,     ENT,                         P4,  P5,  P6,  PPLS,
-    LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,          RSFT,          UP,           P1,  P2,  P3,
-    LCTL,LGUI,LALT,          SPC,                                              LEFT,DOWN,RGHT,    P0,       PDOT,PENT
+    ESC,  F1,   F2,   F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12,            PSCR,SLCK,BRK,                     PWR,
+    GRV,  1,    2,    3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC,      INS, HOME,PGUP,    NLCK,EQL, PSLS, PAST,
+    TAB,  Q,    W,    E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,      DEL, END, PGDN,    P7,  P8,  P9,   PMNS,
+    LCTL, A,    S,    D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,     ENT,                          P4,  P5,  P6,   PPLS,
+    LSFT, Z,    X,    C,   V,   B,   N,   M,   COMM,DOT, SLSH,          RSFT,           UP,           P1,  P2,  P3,
+    LCTL, LGUI, L ALT,           SPC,                                              LEFT,DOWN,RGHT,    P0,       PDOT, PENT
     ),
 
 
