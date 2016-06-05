@@ -1,6 +1,8 @@
 /*
 Copyright 2012 Jun Wako <wakojun@gmail.com>
 
+Patches by: Jason Milkins / ocodo 2016
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
@@ -18,16 +20,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONFIG_H
 #define CONFIG_H
 
-
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x6057
+#define VENDOR_ID       0xC0D0
+#define PRODUCT_ID      0xC0D0
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    t.m.k.
-#define PRODUCT         Phantom
+#define MANUFACTURER    ocodo
+#define PRODUCT         ocodo-1
 
 /* message strings */
-#define DESCRIPTION     t.m.k. keyboard firmware for Phantom
+#define DESCRIPTION     t.m.k. keyboard firmware for ocodo Phantom
 
 /* matrix size */
 #define MATRIX_ROWS 6
@@ -41,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Set LED brightness 0-255.
  * This have no effect if sleep LED is enabled. */
-#define LED_BRIGHTNESS  250
+#define LED_BRIGHTNESS  127
 
 /* key combination for command */
 #define IS_COMMAND() ( \
