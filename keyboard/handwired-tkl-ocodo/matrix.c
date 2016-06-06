@@ -1,4 +1,5 @@
 /* Copyright 2012 Jun Wako <wakojun@gmail.com>
+ * Modified 2016 Jason Milkins / ocodo - for handwired tkl
  *
  * This is heavily based on phantom/board.{c|h}.
  * https://github.com/BathroomEpiphanies/AVR-Keyboard
@@ -19,7 +20,7 @@
 
 
 #ifndef DEBOUNCE
-#   define DEBOUNCE	0
+#   define DEBOUNCE 0
 #endif
 static uint8_t debouncing = DEBOUNCE;
 
@@ -39,7 +40,7 @@ static void select_col(uint8_t col);
    16000000/256/256 = 244 Hz blink frequency.
    LED_A: Caps Lock
    LED_B: Scroll Lock  */
-/* Output on PWM pins are turned off when the timer 
+/* Output on PWM pins are turned off when the timer
    reaches the value in the output compare register,
    and are turned on when it reaches TOP (=256). */
 static
@@ -77,7 +78,7 @@ void matrix_init(void)
     // To use PORTF disable JTAG with writing JTD bit twice within four cycles.
     MCUCR |= (1<<JTD);
     MCUCR |= (1<<JTD);
-	
+
     // initialize row and col
     unselect_cols();
     init_rows();
@@ -161,40 +162,46 @@ uint8_t matrix_key_count(void)
 }
 
 /* Row pin configuration
+ * // legacy pin: B5  B4  B3  B2  B1  B0
  * row: 0   1   2   3   4   5
- * pin: B5  B4  B3  B2  B1  B0
+ * pin: B0  B1  B2  B3  B7  D0
  */
 static void init_rows(void)
 {
     // Input with pull-up(DDR:0, PORT:1)
-    DDRB  &= ~0b00111111;
-    PORTB |= 0b00111111;
+    DDRB  &= ~0b01111111;
+    PORTB |= 0b01111111;
+    DDRD  |= 0b11111111; // D: 0
+    PORTD |= 0b11111111;
 }
 
 static uint8_t read_rows(void)
 {
-    return (PINB&(1<<5) ? 0 : (1<<0)) |
-           (PINB&(1<<4) ? 0 : (1<<1)) |
-           (PINB&(1<<3) ? 0 : (1<<2)) |
-           (PINB&(1<<2) ? 0 : (1<<3)) |
-           (PINB&(1<<1) ? 0 : (1<<4)) |
-           (PINB&(1<<0) ? 0 : (1<<5));
+    return (PINB&(1<<0) ? 0 : (1<<0)) |
+           (PINB&(1<<1) ? 0 : (1<<1)) |
+           (PINB&(1<<2) ? 0 : (1<<2)) |
+           (PINB&(1<<3) ? 0 : (1<<3)) |
+           (PINB&(1<<7) ? 0 : (1<<4)) |
+           (PIND&(1<<0) ? 0 : (1<<5));
 }
 
-/* Column pin configuration
+/* Column pin config
  * col: 0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16
- * pin: D5  C7  C6  D4  D0  E6  F0  F1  F4  F5  F6  F7  D7  D6  D1  D2  D3
+ * pin: F0  F1  F2  F3  F4  F5  F6  F7  B6  B5  B4  D7  C7  C6  D3  D2  D1
  */
+
 static void unselect_cols(void)
 {
     // Hi-Z(DDR:0, PORT:0) to unselect
-    DDRC  |= 0b11000000; // PC: 7 6
+    DDRB  |= 0b00111111; // PB
+    PORTB |= 0b00111111;
+    DDRC  |= 0b11000000; // PC
     PORTC |= 0b11000000;
-    DDRD  |= 0b11111111; // PD: 7 6 5 4 3 2 1 0
+    DDRD  |= 0b11111111; // PD
     PORTD |= 0b11111111;
-    DDRE  |= 0b01000000; // PE: 6
+    DDRE  |= 0b01000000; // PE
     PORTE |= 0b01000000;
-    DDRF  |= 0b11110011; // PF: 7 6 5 4 1 0
+    DDRF  |= 0b11110011; // PF
     PORTF |= 0b11110011;
 }
 
@@ -203,72 +210,72 @@ static void select_col(uint8_t col)
     // Output low(DDR:1, PORT:0) to select
     switch (col) {
         case 0:
-            DDRD  |= (1<<5);
-            PORTD &= ~(1<<5);
-            break;
-        case 1:
-            DDRC  |= (1<<7);
-            PORTC &= ~(1<<7);
-            break;
-        case 2:
-            DDRC  |= (1<<6);
-            PORTC &= ~(1<<6);
-            break;
-        case 3:
-            DDRD  |= (1<<4);
-            PORTD &= ~(1<<4);
-            break;
-        case 4:
-            DDRD  |= (1<<0);
-            PORTD &= ~(1<<0);
-            break;
-        case 5:
-            DDRE  |= (1<<6);
-            PORTE &= ~(1<<6);
-            break;
-        case 6:
             DDRF  |= (1<<0);
             PORTF &= ~(1<<0);
             break;
-        case 7:
+        case 1:
             DDRF  |= (1<<1);
             PORTF &= ~(1<<1);
             break;
-        case 8:
-            DDRF  |= (1<<4);
+        case 2:
+            DDRF  |= (1<<2);
+            PORTF &= ~(1<<2);
+            break;
+        case 3:
+            DDRF  |= (1<<3);
+            PORTF &= ~(1<<3);
+            break;
+        case 4:
+            DDRF |= (1<<4);
             PORTF &= ~(1<<4);
             break;
-        case 9:
+        case 5:
             DDRF  |= (1<<5);
             PORTF &= ~(1<<5);
             break;
-        case 10:
+        case 6:
             DDRF  |= (1<<6);
             PORTF &= ~(1<<6);
             break;
-        case 11:
+        case 7:
             DDRF  |= (1<<7);
             PORTF &= ~(1<<7);
             break;
-        case 12:
+        case 8:
+            DDRB  |= (1<<6);
+            PORTB &= ~(1<<6);
+            break;
+        case 9:
+            DDRB  |= (1<<5);
+            PORTB &= ~(1<<5);
+            break;
+        case 10:
+            DDRB  |= (1<<4);
+            PORTB &= ~(1<<4);
+            break;
+        case 11:
             DDRD  |= (1<<7);
             PORTD &= ~(1<<7);
             break;
+        case 12:
+            DDRC  |= (1<<7);
+            PORTC &= ~(1<<7);
+            break;
         case 13:
-            DDRD  |= (1<<6);
-            PORTD &= ~(1<<6);
+            DDRC  |= (1<<6);
+            PORTC &= ~(1<<6);
             break;
         case 14:
-            DDRD  |= (1<<1);
-            PORTD &= ~(1<<1);
+            DDRD  |= (1<<3);
+            PORTD &= ~(1<<3);
             break;
         case 15:
             DDRD  |= (1<<2);
             PORTD &= ~(1<<2);
             break;
         case 16:
-            DDRD  |= (1<<3);
-            PORTD &= ~(1<<3);
+            DDRD  |= (1<<1);
+            PORTD &= ~(1<<1);
             break;
     }
 }
