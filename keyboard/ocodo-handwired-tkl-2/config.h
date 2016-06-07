@@ -18,18 +18,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONFIG_H
 #define CONFIG_H
 
-
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x6464
+#define VENDOR_ID       0xC0D0
+#define PRODUCT_ID      0xC0D1
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    TD
-#define PRODUCT         Shark
-#define DESCRIPTION     Split Hand ARc Keyboard
+#define MANUFACTURER    ocodo
+#define PRODUCT         handwired-tkl
+#define DESCRIPTION     handwired-tkl
 
 /* key matrix size */
 #define MATRIX_ROWS 6
-#define MATRIX_COLS 16
+#define MATRIX_COLS 17
 
 /* define if matrix has ghost */
 //#define MATRIX_HAS_GHOST
@@ -46,8 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define IS_COMMAND() ( \
     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
 )
-
-
 
 /*
  * Feature disable options

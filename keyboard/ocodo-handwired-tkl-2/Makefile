@@ -27,7 +27,7 @@
 # make flip-ee = Download the eeprom file to the device, using Atmel FLIP
 #                (must have Atmel FLIP installed).
 #
-# make debug = Start either simulavr or avarice as specified for debugging, 
+# make debug = Start either simulavr or avarice as specified for debugging,
 #              with avr-gdb or avr-insight as the front end for debugging.
 #
 # make filename.s = Just compile filename.c into the assembler code only.
@@ -39,7 +39,7 @@
 #----------------------------------------------------------------------------
 
 # Target file name (without extension).
-TARGET = shark
+TARGET = ocodo-tkl-handwired
 
 # Directory common source filess exist
 TMK_DIR = ../../tmk_core
@@ -89,7 +89,7 @@ ARCH = AVR8
 F_USB = $(F_CPU)
 
 # Interrupt driven control endpoint task(+60)
-OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT 
+OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
 
 
 # Boot Section Size in *bytes*

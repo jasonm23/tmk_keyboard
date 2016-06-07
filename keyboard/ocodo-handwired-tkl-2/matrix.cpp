@@ -35,17 +35,20 @@ extern "C" {
 
 //#define DBG_KEYPRESS
 //#define DBG_SPEED
-   
+
 static void debounce_key( uint8_t i, uint8_t j, bool isUp );
 static void dbg_scan_speed();
 
 static TeensyPin s_rowPins[MATRIX_ROWS] = {
-   TPIN(B,7), TPIN(B,3), TPIN(B,2), TPIN(E,6), TPIN(B,1), TPIN(B,0),
+//row: 0          1          2          3          4         5
+//pin: D0         B7         B3         B2         B1        B0
+  TPIN(D,0), TPIN(B,7), TPIN(B,3), TPIN(B,2), TPIN(B,1), TPIN(B,0),
 };
+
 static TeensyPin s_colPins[MATRIX_COLS] = {
-   TPIN(B,4), TPIN(B,5), TPIN(B,6), TPIN(F,7), TPIN(F,6), TPIN(F,5),
-   TPIN(F,4), TPIN(F,1), TPIN(F,0), TPIN(D,5), TPIN(C,7), TPIN(C,6),
-   TPIN(D,3), TPIN(D,2), TPIN(D,1), TPIN(D,0), 
+//col: 0          1          2          3          4          5          6          7          8          9          10         11         12         13         14         15         16
+//pin: F0         F1         F2         F3         F4         F5         F6         F7         B6         B5         B4         D7         C7         C6         D3         D2         D1
+  TPIN(F,0), TPIN(F,1), TPIN(F,2), TPIN(F,3), TPIN(F,4), TPIN(F,5), TPIN(F,6), TPIN(F,7), TPIN(B,6), TPIN(B,5), TPIN(B,4), TPIN(D,7), TPIN(C,7), TPIN(C,6), TPIN(D,3), TPIN(D,2), TPIN(D,1),
 };
 
 // Keyboard matrix state (0 = up, 1 = down)
@@ -97,7 +100,7 @@ void matrix_init(void)
     for ( uint8_t i=0; i < MATRIX_ROWS; i++ )
     {
         s_matrix[i] = 0;
-        
+
         for ( uint8_t j = 0; j < MATRIX_COLS; j++ )
         {
            // 1 = key up
@@ -105,7 +108,7 @@ void matrix_init(void)
         }
     }
 }
-   
+
 uint8_t matrix_scan(void)
 {
     // Loop over the rows and energize each pin one at a time.
@@ -124,14 +127,14 @@ uint8_t matrix_scan(void)
 
             debounce_key( i, j, isUp );
         }
-        
+
         // Remove current from the row.
         s_rowPins[i].high();
     }
 
 #ifdef DBG_SPEED
     dbg_scan_speed();
-#endif // DBG_SPEED    
+#endif // DBG_SPEED
 
     // If you really want the debounce algorithm to be 5 ms, then
     // fiddle with this (using DBG_SPEED) until you get roughly 1000
@@ -168,18 +171,18 @@ static void debounce_key( uint8_t i, uint8_t j, bool isUp )
    //if ( v == 0b111110 ) fire on the first press...
    if ( v == 0b100000 ) // wait 5
    {
-#ifdef DBG_KEYPRESS               
+#ifdef DBG_KEYPRESS
       xprintf( "Key DOWN : Row=%d Col=%d\n", i, j );
-#endif // DBG_KEYPRESS               
+#endif // DBG_KEYPRESS
       BIT_SET( s_matrix[i], j );
    }
    // If the key was down (0) followed by 5 consecutive scans
    // w/ the key up (1), then mark the key as not pressed.
    else if ( v == 0b011111 )
    {
-#ifdef DBG_KEYPRESS               
+#ifdef DBG_KEYPRESS
       xprintf( "Key UP   : Row=%d Col=%d\n", i, j );
-#endif // DBG_KEYPRESS               
+#endif // DBG_KEYPRESS
       BIT_CLEAR( s_matrix[i], j );
    }
 }
@@ -217,4 +220,3 @@ dbg_scan_speed()
       }
    }
 }
-
