@@ -40,15 +40,32 @@ static void debounce_key( uint8_t i, uint8_t j, bool isUp );
 static void dbg_scan_speed();
 
 static TeensyPin s_rowPins[MATRIX_ROWS] = {
-//row: 0          1          2          3          4         5
-//pin: D0         B7         B3         B2         B1        B0
-  TPIN(D,0), TPIN(B,7), TPIN(B,3), TPIN(B,2), TPIN(B,1), TPIN(B,0),
+  TPIN(D,0), // row 0
+  TPIN(B,7), // row 1
+  TPIN(B,3), // row 2
+  TPIN(B,2), // row 3
+  TPIN(B,1), // row 4
+  TPIN(B,0), // row 5
 };
 
 static TeensyPin s_colPins[MATRIX_COLS] = {
-//col: 0          1          2          3          4          5          6          7          8          9          10         11         12         13         14         15         16
-//pin: F0         F1         F2         F3         F4         F5         F6         F7         B6         B5         B4         D7         C7         C6         D3         D2         D1
-  TPIN(F,0), TPIN(F,1), TPIN(F,2), TPIN(F,3), TPIN(F,4), TPIN(F,5), TPIN(F,6), TPIN(F,7), TPIN(B,6), TPIN(B,5), TPIN(B,4), TPIN(D,7), TPIN(C,7), TPIN(C,6), TPIN(D,3), TPIN(D,2), TPIN(D,1),
+  TPIN(D,4), // col 00
+  TPIN(D,6), // col 01
+  TPIN(D,7), // col 02
+  TPIN(B,4), // col 03
+  TPIN(B,5), // col 04
+  TPIN(B,6), // col 05
+  TPIN(F,7), // col 06
+  TPIN(F,6), // col 07
+  TPIN(F,5), // col 08
+  TPIN(F,4), // col 09
+  TPIN(F,1), // col 10
+  TPIN(D,5), // col 11
+  TPIN(C,7), // col 12
+  TPIN(C,6), // col 13
+  TPIN(D,3), // col 14
+  TPIN(D,2), // col 15
+  TPIN(D,1), // col 16
 };
 
 // Keyboard matrix state (0 = up, 1 = down)
