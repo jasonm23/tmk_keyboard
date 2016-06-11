@@ -88,7 +88,7 @@ uint8_t matrix_cols(void)
 
 bool matrix_is_on(uint8_t row, uint8_t col)
 {
-    return (s_matrix[row] & ((matrix_row_t)1<<col));
+    return (s_matrix[row] & ((matrix_row_t)1UL<<col));
 }
 
 matrix_row_t matrix_get_row(uint8_t row)
@@ -162,11 +162,12 @@ uint8_t matrix_scan(void)
 
 void matrix_print(void)
 {
-    xprintf("\nr/c 0123456789ABCDEF\n");
+    xprintf("\n    00000000000000001111111111111111\n");
+    xprintf("r/c 0123456789ABCDEF0123456789ABCDEF\n");
     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
         phex(row);
         xprintf(": ");
-        pbin_reverse16(s_matrix[row]);
+        pbin_reverse32(s_matrix[row]);
         xprintf("\n");
     }
 }

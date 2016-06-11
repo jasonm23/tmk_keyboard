@@ -1,5 +1,5 @@
 // Phantom ANSI
-static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+static const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* 0: QWERTY */
     KEYMAP_ANSI(\
         ESC,          F1,   F2,       F3,          F4,   F5,   F6,   F7,   F8,   F9,  F10,  F11,  F12,       PSCR, SLCK,  BRK, \

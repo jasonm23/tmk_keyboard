@@ -18,13 +18,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <avr/io.h>
 
 // Set the bit number 'bit' in the variable 'field' to 1.
-#define BIT_SET( field, bit ) (field) |= ( 1 << bit )
+#define BIT_SET( field, bit ) (field) |= ( 1UL << bit )
 
 // Set the bit number 'bit' in the variable 'field' to 0.
-#define BIT_CLEAR( field, bit ) (field) &= ~( 1 << bit )
+#define BIT_CLEAR( field, bit ) (field) &= ~( 1UL << bit )
 
 // Return the bit number 'bin' from the variable 'field'.
-#define BIT_READ( field, bit ) (field) & ( 1 << bit )
+#define BIT_READ( field, bit ) (field) & ( 1UL << bit )
 
 // TeensyPin macro constructor.  Use this instead of the class
 // constructor to build a TeensyPin object.  It will expand an input
@@ -124,4 +124,3 @@ high()
 {
    BIT_SET( *m_port, m_pin );
 }
-
