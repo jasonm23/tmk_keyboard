@@ -114,31 +114,31 @@ bool command_console_extra(uint8_t code)
  ***********************************************************/
 static void command_common_help(void)
 {
-    print("\n\t- Magic -\n"
-          "d:	debug\n"
-          "x:	debug matrix\n"
-          "k:	debug keyboard\n"
-          "m:	debug mouse\n"
-          "v:	version\n"
-          "s:	status\n"
-          "c:	console mode\n"
-          "0-4:	layer0-4(F10-F4)\n"
-          "Paus:	bootloader\n"
+    print("\n\t- <<< Keyboard Magic >>>-\n"
+          "d: debug\n"
+          "x: debug matrix\n"
+          "k: debug keyboard\n"
+          "m: debug mouse\n"
+          "v: version\n"
+          "s: status\n"
+          "c: console mode\n"
+          "0-4: layer0-4(F10-F4)\n"
+          "Paus:  bootloader\n"
 
 #ifdef KEYBOARD_LOCK_ENABLE
-          "Caps:	Lock\n"
+          "Caps:  Lock\n"
 #endif
 
 #ifdef BOOTMAGIC_ENABLE
-          "e:	eeprom\n"
+          "e: eeprom\n"
 #endif
 
 #ifdef NKRO_ENABLE
-          "n:	NKRO\n"
+          "n: NKRO\n"
 #endif
 
 #ifdef SLEEP_LED_ENABLE
-          "z:	sleep LED test\n"
+          "z: sleep LED test\n"
 #endif
     );
 }
@@ -383,9 +383,9 @@ static bool command_common(uint8_t code)
 static void command_console_help(void)
 {
     print("\n\t- Console -\n"
-          "ESC/q:	quit\n"
+          "ESC/q: quit\n"
 #ifdef MOUSEKEY_ENABLE
-          "m:	mousekey\n"
+          "m: mousekey\n"
 #endif
     );
 }
@@ -535,23 +535,23 @@ static void mousekey_param_dec(uint8_t param, uint8_t dec)
 static void mousekey_console_help(void)
 {
     print("\n\t- Mousekey -\n"
-          "ESC/q:	quit\n"
-          "1:	delay(*10ms)\n"
-          "2:	interval(ms)\n"
-          "3:	max_speed\n"
-          "4:	time_to_max\n"
-          "5:	wheel_max_speed\n"
-          "6:	wheel_time_to_max\n"
+          "ESC/q: quit\n"
+          "1: delay(*10ms)\n"
+          "2: interval(ms)\n"
+          "3: max_speed\n"
+          "4: time_to_max\n"
+          "5: wheel_max_speed\n"
+          "6: wheel_time_to_max\n"
           "\n"
-          "p:	print values\n"
-          "d:	set defaults\n"
-          "up:	+1\n"
-          "down:	-1\n"
-          "pgup:	+10\n"
-          "pgdown:	-10\n"
+          "p: print values\n"
+          "d: set defaults\n"
+          "up:  +1\n"
+          "down:  -1\n"
+          "pgup:  +10\n"
+          "pgdown:  -10\n"
           "\n"
           "speed = delta * max_speed * (repeat / time_to_max)\n");
-    xprintf("where delta: cursor=%d, wheel=%d\n" 
+    xprintf("where delta: cursor=%d, wheel=%d\n"
             "See http://en.wikipedia.org/wiki/Mouse_keys\n", MOUSEKEY_MOVE_DELTA,  MOUSEKEY_WHEEL_DELTA);
 }
 
