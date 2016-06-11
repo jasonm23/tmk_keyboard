@@ -114,7 +114,7 @@ bool command_console_extra(uint8_t code)
  ***********************************************************/
 static void command_common_help(void)
 {
-    print("\n\t- <<< Keyboard Magic >>>-\n"
+    print("\n\t-=<<<[ Keyboard Magic ]>>>=-\n"
           "d: debug\n"
           "x: debug matrix\n"
           "k: debug keyboard\n"
