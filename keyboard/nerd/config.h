@@ -18,12 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CONFIG_H
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x6060
+#define VENDOR_ID       0xC0D0
+#define PRODUCT_ID      0xF00D
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    GON
-#define PRODUCT         NerD
-#define DESCRIPTION     t.m.k. keyboard firmware for NerD
+#define MANUFACTURER    Ocodo
+#define PRODUCT         OcodoTMKNerd
+#define DESCRIPTION     Ocodo customised TMK Keyboard Firmware for GON NerD
 
 /* key matrix size */
 #define MATRIX_ROWS 9

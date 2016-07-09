@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "keymap_common.h"
+#include "debug.h"
 
 /* translates key to keycode */
 uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
@@ -25,5 +26,6 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
 /* translates Fn keycode to action */
 action_t keymap_fn_to_action(uint8_t keycode)
 {
+    dprintf("FN Keycode: %02X", keycode); dprintln();
     return (action_t){ .code = pgm_read_word(&fn_actions[FN_INDEX(keycode)]) };
 }
