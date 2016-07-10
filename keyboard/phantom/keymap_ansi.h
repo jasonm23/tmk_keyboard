@@ -13,10 +13,10 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP_ANSI(\
         TRNS,       TRNS, TRNS,     TRNS,        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS, \
         TRNS,    A,    B,    C,        D,           E,    F, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS, \
-        TRNS,    7,    8,    9,  KP_PLUS,    KP_MINUS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS, \
-        CAPS,    4,    5,    6, KP_SLASH, KP_ASTERISK, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       TRNS,                         \
-        TRNS,    1,    2,    3,        0,         DOT, TRNS, TRNS, TRNS, TRNS, TRNS,             TRNS,             TRNS,       \
-        TRNS, TRNS,  ENT,                              TRNS,                   TRNS, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS)
+        TRNS, KP_7, KP_8, KP_9,  KP_PLUS,    KP_MINUS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS, \
+        CAPS, KP_4, KP_5, KP_6, KP_SLASH, KP_ASTERISK, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       TRNS, \
+        TRNS, KP_1, KP_2, KP_3,     KP_0,      KP_DOT, TRNS, TRNS, TRNS, TRNS, TRNS,             TRNS,             TRNS,       \
+        TRNS, TRNS, KP_ENTER,                          TRNS,                   TRNS, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS)
 };
 
 static const uint16_t PROGMEM fn_actions[] = {
