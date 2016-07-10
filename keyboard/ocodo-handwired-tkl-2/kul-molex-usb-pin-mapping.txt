@@ -1,0 +1,14 @@
+Stripped USB
+============
+Black         → GND
+Green         → D +
+Yellow        → D -
+Red           → VCC
+
+Molex
+=====
+Red           → VCC
+White         → D -
+Green         → D +
+Black         → GND
+Black(worded) → Shield
