@@ -11,7 +11,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* 0: FN0 Layer */
     KEYMAP_ANSI(\
-        TRNS,       F16, F17,     F18,        F19, F20, F21, F22, F23, F24, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS, \
+        TRNS,        F16,  F17,      F18,         F19,  F20,  F21,  F22,  F23,  F24, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS, \
         TRNS,    A,    B,    C,        D,           E,    F, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS, \
         TRNS, KP_7, KP_8, KP_9,  KP_PLUS,    KP_MINUS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       TRNS, TRNS, TRNS, \
         CAPS, KP_4, KP_5, KP_6, KP_SLASH, KP_ASTERISK, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       TRNS, \
