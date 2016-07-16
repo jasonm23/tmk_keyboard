@@ -39,29 +39,40 @@ extern "C" {
 static void debounce_key( uint8_t i, uint8_t j, bool isUp );
 static void dbg_scan_speed();
 
+// Teensy pins (oriented with USB at top)
 static TeensyPin s_rowPins[MATRIX_ROWS] = {
-  TPIN(D, 0), // row 00 -> D0
-  TPIN(B, 7), // row 01 -> B7
-  TPIN(B, 3), // row 02 -> B3
-  TPIN(B, 2), // row 03 -> B2
-  TPIN(B, 1), // row 04 -> B1
+  // Left side (top)
   TPIN(B, 0), // row 05 -> B0
+  TPIN(B, 1), // row 04 -> B1
+  TPIN(B, 2), // row 02 -> B2
+  TPIN(B, 3), // row 03 -> B3
+  TPIN(B, 7), // row 01 -> B7
+  TPIN(D, 0), // row 00 -> D0
 };
 
 static TeensyPin s_colPins[MATRIX_COLS] = {
-  TPIN(D, 4), // col 00 -> D4
-  TPIN(D, 6), // col 01 -> D6
-  TPIN(D, 7), // col 02 -> D7
-  TPIN(B, 4), // col 03 -> B4
-  TPIN(B, 5), // col 04 -> B5
-  TPIN(B, 6), // col 05 -> B6
+  // Right side (bottom)
+  TPIN(D, 7), // col 00 -> D7
+  TPIN(B, 4), // col 01 -> B4
+  TPIN(B, 5), // col 03 -> B5
+  TPIN(B, 6), // col 02 -> B6
   TPIN(F, 7), // col 06 -> F7
+
+  // Bottom side (right)
+  TPIN(D, 4), // col 04 -> D4
+  TPIN(D, 6), // col 05 -> D6
+
+  // Right side (top)
   TPIN(F, 6), // col 07 -> F6
   TPIN(F, 5), // col 08 -> F5
   TPIN(F, 4), // col 09 -> F4
   TPIN(F, 1), // col 10 -> F1
+
+  // Bottom side (left)
   TPIN(D, 5), // col 11 -> D5
   TPIN(C, 7), // col 12 -> C7
+
+  // Left side (bottom)
   TPIN(C, 6), // col 13 -> C6
   TPIN(D, 3), // col 14 -> D3
   TPIN(D, 2), // col 15 -> D2
